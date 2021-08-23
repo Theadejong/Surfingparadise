@@ -10,10 +10,10 @@
 
 <!--landingPage-->
 <body>
-    <div>
-        <button class='buttonStyle' class='sound'>Sound On</button>
-    </div>
     <div class='landingPage'>
+        <div>
+            <button class='buttonStyle' class='sound'>Sound On</button>
+        </div>
             <h1 class='mainTitle'>Surfers Paradise</h1>
             <p  class='intro'>You are a surfer who is practising for the most important surf competition of it’s life. 
                 In order to prepare, you went accidentally to far away from the shore and got surprised by a group of sharks. 
@@ -28,11 +28,22 @@
                 <br>Evertime you get bitten by the shark, you loose 1 life. 
                 <br>For each 10 Hawaiian flowers you collect, you receive 1 extra life.
             </p>
+        <div>
+                <button class='buttonStyle' class='start'>Start Game</button>
+        </div>
     </div>
-    <div>
-        <button class='buttonStyle' class='start'>Start Game</button>
+    
+        
+<!--Game Page-->
+
+<section id="game-page">
+    
+    <div id="game-container">
+        <canvas id="myCanvas" width="800" height="800"></canvas>
     </div>
-                
+</section>
+
+
 <!--Adding the scripts-->
     <script src='background.js'></script>
     <script src="obstacles.js"></script>
