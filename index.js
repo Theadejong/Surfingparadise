@@ -1,20 +1,15 @@
-// still need to work on this 1st part
 window.onload = () => {
 
 let canvas = document.querySelector('#myCanvas');
 let ctx = canvas.getContext('2d');
 let frameId = null;
 let obstacleId = null;
-
-//console.log("Check if JS is connected")
-//console.log(myCanvas)
-
-//check-out the width/height of the obstacle & surfer
+let obstacleIdFlower = null;
+let timeToStartObstacles = 0;
 const background = new Background(ctx);
 const surfer = new Surfer (ctx, canvas.height/3, canvas.width/3);
-//const shark = new Obstacle (ctx, canvas.height/2, canvas.width - 800);
 
-
+//Shark Obstacle
 const sharkArray = [];
 
 obstacleId = setInterval(function(){
@@ -27,6 +22,22 @@ obstacleId = setInterval(function(){
     sharkArray.push(sharkObstacle);
     console.log("hello", sharkArray)
 },2000)
+
+    //timeToStartObstacles = 1;
+
+//Flower Obstacle
+    const flowerArray = [];
+
+obstacleIdFlower = setInterval(function(){
+    let flowerObstacle = new Flower (
+    ctx,//canvas context
+    canvas.width,
+    Math.random() * (800 - 240) + 240,
+    Math.ceil(Math.random() * 2) // will give the speed
+        )
+    flowerArray.push(flowerObstacle);
+    console.log("hello", flowerArray)
+},5000)
 
 //This is where the game logic happens
 function startGame() {
@@ -42,9 +53,13 @@ function startGame() {
     //Paint the objects, still missing the flowers
     background.draw();
     surfer.draw();
-    sharkArray.forEach((shark)=>{
+    sharkArray.forEach((shark)=>{ //loop through the array in order to print the objects in the array
         shark.draw();
         shark.move();
+    })
+    flowerArray.forEach((flowers)=>{ //loop through the array in order to print the objects in the array
+        flowers.draw();
+        flowers.move();
     })
 }
 
