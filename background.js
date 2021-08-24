@@ -5,7 +5,7 @@ class Background {
         (this.ctx = canvasContext),
         (this.x = 0),
         (this.y = 0),
-        (this.width = 800),
+        (this.width = 2000),
         (this.height = 800);
     }
 
