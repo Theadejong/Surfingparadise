@@ -7,7 +7,7 @@ let obstacleId = null;
 let obstacleIdFlower = null;
 let timeToStartObstacles = 0;
 const background = new Background(ctx);
-const surfer = new Surfer (ctx, canvas.height/3, canvas.width/3);
+const surfer = new Surfer(ctx, canvas.width/6, canvas.height/2); // You modify this line to make it appear where you want
 
 //Shark Obstacle
 const sharkArray = [];

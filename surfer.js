@@ -1,19 +1,17 @@
-const surferImg = document.createElement('img');
-surferImg.src = './Images/Surfer.png';
-
 class Surfer {
 
     // position not correct yet---startposition is good but need to make sure it doesn't go out of the water! 
-    constructor(canvasContext, positionX, positionY){
-        this.ctx = canvasContext,
-        this.image = surferImg,
-        this.x = 0,
-        this.y = 400,
-        this.width = 100,
-        this.height = 100
+    constructor(canvasContext, startPositionX, startPositionY){
+        this.ctx = canvasContext;
+        this.surferImg = document.createElement('img');
+        this.surferImg.src = '/Images/Surfer.png';
+        this.x = startPositionX;
+        this.y = startPositionY;
+        this.width = 100;
+        this.height = 100;
     }
 
     draw(){
-        this.ctx.drawImage(surferImg, this.x, this.y, this.width, this.height);
+        this.ctx.drawImage(this.surferImg, this.x, this.y, this.width, this.height);
     }
 }
