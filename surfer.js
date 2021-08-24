@@ -3,6 +3,7 @@ surferImg.src = './Images/Surfer.png';
 
 class Surfer {
 
+    // position not correct yet---startposition is good but need to make sure it doesn't go out of the water! 
     constructor(canvasContext, positionX, positionY){
         this.ctx = canvasContext,
         this.image = surferImg,
