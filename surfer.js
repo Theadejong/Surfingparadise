@@ -6,8 +6,8 @@ class Surfer {
     constructor(canvasContext, positionX, positionY){
         this.ctx = canvasContext,
         this.image = surferImg,
-        this.x = positionX,
-        this.y = positionY,
+        this.x = 0,
+        this.y = 400,
         this.width = 100,
         this.height = 100
     }

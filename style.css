@@ -10,10 +10,7 @@ body {
         font-size: 24px;
         border-radius: 32px;
         border-style: double;
-        background-color: orange;
-        padding-left: 30px; 
-	    padding-right: 30px;  
-	    padding-bottom: 30px; 
+        background-color: blueviolet
         }
 
 .landingPage {
