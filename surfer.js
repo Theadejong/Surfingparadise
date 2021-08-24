@@ -8,8 +8,8 @@ class Surfer {
         this.image = surferImg,
         this.x = positionX,
         this.y = positionY,
-        this.width = 500,
-        this.height = 500
+        this.width = 100,
+        this.height = 100
     }
 
     draw(){

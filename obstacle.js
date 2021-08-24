@@ -6,8 +6,8 @@ class Obstacle {
 
     constructor( canvasContext, positionX, positionY ){
         (this.ctx = canvasContext),
-        (this.x = 0),
-        (this.y = 0),
+        (this.x = positionX),
+        (this.y = positionY),
         (this.width = 100),
         (this.height = 100);
     }

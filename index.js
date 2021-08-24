@@ -10,7 +10,7 @@ let obstacleId = null;
 
 //check-out the width/height of the obstacle & surfer
 const background = new Background(ctx);
-const surfer = new Surfer (ctx);
+const surfer = new Surfer (ctx, canvas.height/3, canvas.width/3);
 const shark = new Obstacle (ctx, canvas.height/2, canvas.width - 800);
 
 //This is where the game logic happens
