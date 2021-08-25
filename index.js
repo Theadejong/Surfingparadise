@@ -10,12 +10,23 @@ let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d');
 let frameId = null;
 let obstacleId = null;
+let obstacleIdMommy = null;
+let obstacleIdDaddy = null;
+let obstacleIdGrandMommy = null;
+let obstacleIdGrandDaddy = null;
 let obstacleIdFlower = null;
 let timeToStartObstacles = 0;
 const background = new Background(ctx);
 const surfer = new Surfer(ctx, canvas.width/6, canvas.height/2); // You modify this line to make it appear where you want
 let collision = false;
-let speedMult = 1.1
+let speedMultiplier = 1;
+let increaseSpeed = 10
+
+
+//sounds
+let playMusic = new Audio ()
+playMusic.src = '/Music/Baby.Shark_.Aghanyna.NeT_.mp3'
+playMusic.volume = 0.1
 
 //set the scoring for the flowers
 const score = {
@@ -23,7 +34,7 @@ const score = {
     draw: function(){
         ctx.font = '30px Arial';
         ctx.fillStyle = 'black';
-        ctx.fillText('Score:' + this.points, 700, 700);
+        ctx.fillText('Your score is:' + this.points, 300, 200);
     }
 };
 
@@ -36,10 +47,66 @@ if(!obstacleId) {
     ctx,//canvas context
     canvas.width,
     Math.random() * (800 - 240) + 240,
-    Math.ceil(Math.random() * 3) // will give the speed
+    speedMultiplier * Math.ceil(Math.random() * 1) // will give the speed
     )
     sharkArray.push(sharkObstacle);
 },3000)
+}
+
+if(!obstacleIdMommy) {
+    obstacleIdMommy = setInterval(function(){
+        let sharkObstacle = new Obstacle (
+            ctx,//canvas context
+            canvas.width,
+            Math.random() * (800 - 240) + 240,
+            speedMultiplier * Math.ceil(Math.random() * 2), // will give the speed
+            "./Images/MommyShark.png"
+        )
+        sharkArray.push(sharkObstacle);
+    },
+    38000)
+}
+
+if(!obstacleIdDaddy) {
+    obstacleIdDaddy = setInterval(function(){
+        let sharkObstacle = new Obstacle (
+            ctx,//canvas context
+            canvas.width,
+            Math.random() * (800 - 240) + 240,
+            speedMultiplier * Math.ceil(Math.random() * 3), // will give the speed
+            "./Images/DaddyShark.png"
+        )
+        sharkArray.push(sharkObstacle);
+    },
+    44000)
+}
+
+if(!obstacleIdGrandMommy) {
+    obstacleIdGrandMommy = setInterval(function(){
+        let sharkObstacle = new Obstacle (
+            ctx,//canvas context
+            canvas.width,
+            Math.random() * (800 - 240) + 240,
+            speedMultiplier * Math.ceil(Math.random() * 4), // will give the speed
+            "./Images/GrandDadShark.png"
+        )
+        sharkArray.push(sharkObstacle);
+    },
+    52000)
+}
+
+if(!obstacleIdGrandDaddy) {
+    obstacleIdGrandDaddy = setInterval(function(){
+        let sharkObstacle = new Obstacle (
+            ctx,//canvas context
+            canvas.width,
+            Math.random() * (800 - 240) + 240,
+            speedMultiplier * Math.ceil(Math.random() * 5), // will give the speed
+            "./Images/GrandDadShark.png"
+        )
+        sharkArray.push(sharkObstacle);
+    },
+    101000)
 }
 
 //timeToStartObstacles = 1;
@@ -78,12 +145,7 @@ if(!obstacleIdFlower) {
 //This is where the game logic happens
 function startGame() {
     //Create a loop to animate the game
-    
-    //Check if the game is working with a console log
-    console.log('Game Started');
-    
-    console.log("score: ", score.points);
-    
+    playMusic.play();
     //Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
@@ -103,13 +165,15 @@ function startGame() {
         checkFlower(surfer, flower, index);
     });
 
-    frameId = requestAnimationFrame(startGame);
+    if (collision === false) {
+        frameId = requestAnimationFrame(startGame);
+    }
 }
 
 //Collision with Shark
 
 function checkCollision (surfer, shark) {
-    collision = (
+    const colliding = (
         surfer.x < shark.x + shark.width - 20 &&
         surfer.x + surfer.width - 20 > shark.x &&
         surfer.y < shark.y + shark.height - 20 &&
@@ -117,9 +181,12 @@ function checkCollision (surfer, shark) {
     );           
 
     // Game over when collision happens
-    if (collision) {
+    if (colliding) {
+        collision = true;
+        console.log('Uh oh! The surfer collided with a shark...')
         clearInterval(frameId);
         clearInterval(obstacleId);
+        clearInterval(obstacleIdMommy);
         clearInterval(obstacleIdFlower);
         window.location.reload();
       }
@@ -135,9 +202,18 @@ function checkFlower (surfer, flower, i) {
         surfer.y + surfer.height > flower.y     // bottom
     )
     ){
-        score.points++;
-        flowerArray.splice(i, 1)
-        //ifstatement increase speed, update with for each on sharks/flowers array
+        score.points++; // increment score by 1 for each flower collision
+        flowerArray.splice(i, 1) // to delete the flowers after they have collide
+       
+        //Add difficulty, increase speed
+        if (score.points >= 10 && score.points < 20) {
+            // Let's go through the array of sharks we have
+            // and increase their speed by 1.1
+            speedMultiplier *= increaseSpeed;
+            sharkArray.forEach((shark) => {
+                shark.speed *= increaseSpeed;
+            })
+        }
     }
 };
 

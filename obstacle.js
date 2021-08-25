@@ -1,10 +1,13 @@
 // add speed, but keeps undefined & add Hawaiian Flowers
 class Obstacle {
 
-    constructor( canvasContext, positionX, positionY, speed ){
+    constructor( canvasContext, positionX, positionY, speed, img ){
+        if (img === undefined) {
+            img = "./Images/Shark.png"
+        }
         this.ctx = canvasContext;
         this.obstacleImg = document.createElement('img');
-        this.obstacleImg.src = '/Images/Shark.png';        
+        this.obstacleImg.src = img;        
         this.x = positionX;
         this.y = positionY;
         this.width = 100;
