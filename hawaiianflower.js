@@ -6,8 +6,8 @@ class Flower {
         this.flowerImg.src = '/Images/HawaiianFlower.png';
         this.x = positionX;
         this.y = positionY;
-        this.width = 50;
-        this.height = 50;
+        this.width = 30;
+        this.height = 30;
         this.speed = speed;
     }
 
