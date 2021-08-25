@@ -25,8 +25,20 @@ let increaseSpeed = 10
 
 //sounds
 let playMusic = new Audio ()
-playMusic.src = '/Music/Baby.Shark_.Aghanyna.NeT_.mp3'
+playMusic.src = '/Music/MusicGame.mp4'
 playMusic.volume = 0.1
+
+let playMusicLandingPage = new Audio()
+playMusicLandingPage.scr = '/Music/shark-tank-theme.mp3'
+playMusicLandingPage.volume = 0.1
+
+let playMusicCollectFlower = new Audio()
+playMusicCollectFlower.scr = '/Music/Blip 003.wav'
+playMusicCollectFlower.volume = 0.1
+
+let playMusicGameOver = new Audio()
+playMusicGameOver.scr = '/Music/Game Over 001.wav'
+playMusicGameOver.volume = 0.1
 
 //set the scoring for the flowers
 const score = {
@@ -50,7 +62,7 @@ if(!obstacleId) {
     speedMultiplier * Math.ceil(Math.random() * 1) // will give the speed
     )
     sharkArray.push(sharkObstacle);
-},3000)
+},2500)
 }
 
 if(!obstacleIdMommy) {
@@ -59,12 +71,12 @@ if(!obstacleIdMommy) {
             ctx,//canvas context
             canvas.width,
             Math.random() * (800 - 240) + 240,
-            speedMultiplier * Math.ceil(Math.random() * 2), // will give the speed
+            speedMultiplier * Math.ceil(Math.random() * 4), // will give the speed
             "./Images/MommyShark.png"
         )
         sharkArray.push(sharkObstacle);
     },
-    38000)
+    19000)
 }
 
 if(!obstacleIdDaddy) {
@@ -73,12 +85,12 @@ if(!obstacleIdDaddy) {
             ctx,//canvas context
             canvas.width,
             Math.random() * (800 - 240) + 240,
-            speedMultiplier * Math.ceil(Math.random() * 3), // will give the speed
+            speedMultiplier * Math.ceil(Math.random() * 4), // will give the speed
             "./Images/DaddyShark.png"
         )
         sharkArray.push(sharkObstacle);
     },
-    44000)
+    27000)
 }
 
 if(!obstacleIdGrandMommy) {
@@ -88,11 +100,11 @@ if(!obstacleIdGrandMommy) {
             canvas.width,
             Math.random() * (800 - 240) + 240,
             speedMultiplier * Math.ceil(Math.random() * 4), // will give the speed
-            "./Images/GrandDadShark.png"
+            "./Images/GrandmomShark.png"
         )
         sharkArray.push(sharkObstacle);
     },
-    52000)
+    36000)
 }
 
 if(!obstacleIdGrandDaddy) {
@@ -102,11 +114,11 @@ if(!obstacleIdGrandDaddy) {
             canvas.width,
             Math.random() * (800 - 240) + 240,
             speedMultiplier * Math.ceil(Math.random() * 5), // will give the speed
-            "./Images/GrandDadShark.png"
+            "./Images/GranddadShark.png"
         )
         sharkArray.push(sharkObstacle);
     },
-    101000)
+    44000)
 }
 
 //timeToStartObstacles = 1;
@@ -145,6 +157,7 @@ if(!obstacleIdFlower) {
 //This is where the game logic happens
 function startGame() {
     //Create a loop to animate the game
+    playMusicLandingPage.pause();
     playMusic.play();
     //Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -189,6 +202,8 @@ function checkCollision (surfer, shark) {
         clearInterval(obstacleIdMommy);
         clearInterval(obstacleIdFlower);
         window.location.reload();
+        playMusic.pause()
+        playMusicGameOver.play()
       }
 }
 
@@ -204,8 +219,9 @@ function checkFlower (surfer, flower, i) {
     ){
         score.points++; // increment score by 1 for each flower collision
         flowerArray.splice(i, 1) // to delete the flowers after they have collide
-       
-        //Add difficulty, increase speed
+        playMusic.pause()
+        playMusicCollectFlower.play()
+        /*Add difficulty, increase speed
         if (score.points >= 10 && score.points < 20) {
             // Let's go through the array of sharks we have
             // and increase their speed by 1.1
@@ -213,7 +229,7 @@ function checkFlower (surfer, flower, i) {
             sharkArray.forEach((shark) => {
                 shark.speed *= increaseSpeed;
             })
-        }
+        }*/
     }
 };
 

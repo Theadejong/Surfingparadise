@@ -3,7 +3,7 @@ class Obstacle {
 
     constructor( canvasContext, positionX, positionY, speed, img ){
         if (img === undefined) {
-            img = "./Images/Shark.png"
+            img = "./Images/BabyShark.png"
         }
         this.ctx = canvasContext;
         this.obstacleImg = document.createElement('img');
