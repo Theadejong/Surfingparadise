@@ -10,8 +10,8 @@ class Obstacle {
         this.obstacleImg.src = img;        
         this.x = positionX;
         this.y = positionY;
-        this.width = 100;
-        this.height = 100;
+        this.width = 80;
+        this.height = 80;
         this.speed = speed;
         this.scale = 1;
     }

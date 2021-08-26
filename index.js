@@ -18,11 +18,12 @@ let obstacleIdGrandMommy = null;
 let obstacleIdGrandDaddy = null;
 let obstacleIdFlower = null;
 let timeToStartObstacles = 0;
+let collision = false
 const background = new Background(ctx);
 const surfer = new Surfer(ctx, canvas.width/6, canvas.height/2); // You modify this line to make it appear where you want
-let collision = false;
 let speedMultiplier = 1;
 let increaseSpeed = 1.33;
+
 
 //sounds
 let playMusicLandingPage = new Audio(src='/Music/shark-tank-theme.mp3')
@@ -34,7 +35,7 @@ let playMusicCollectFlower = new Audio(src='./Music/Blip.wav')
 let playMusicGameOver = new Audio(src='./Music/Gameover.wav')
 
 //set the scoring for the flowers
-const score = {
+let score = {
     points: 0,
     draw: function(){
         ctx.font = '30px Arial';
@@ -46,7 +47,7 @@ const score = {
 //OBSTACLES
 
 //Shark Obstacle
-const sharkArray = [];
+let sharkArray = [];
 
 if(!obstacleId) {
     obstacleId = setInterval(function(){
@@ -121,7 +122,7 @@ if(!obstacleIdGrandDaddy) {
 //timeToStartObstacles = 1;
 
 //Flower Obstacle
-    const flowerArray = [];
+    let flowerArray = [];
 
 if(!obstacleIdFlower) {
     obstacleIdFlower = setInterval(function(){
@@ -177,7 +178,7 @@ function startGame() {
         checkFlower(surfer, flower, index);
     });
     if (collision === false) {
-        frameId = requestAnimationFrame(startGame);
+       frameId = requestAnimationFrame(startGame);
     }
 }
 
@@ -193,13 +194,25 @@ function checkCollision (surfer, shark) {
 
     // Game over when collision happens
     if (colliding) {
-        collision = true;
         console.log('Uh oh! The surfer collided with a shark...')
+        collision = true
+        cancelAnimationFrame(frameId)
+        cancelAnimationFrame(obstacleId)
+        cancelAnimationFrame(obstacleIdMommy)
+        cancelAnimationFrame(obstacleIdDaddy)
+        cancelAnimationFrame(obstacleIdGrandMommy)
+        cancelAnimationFrame(obstacleIdGrandDaddy)
+        cancelAnimationFrame(obstacleIdFlower)
         playMusicGameOver.play()
+        playMusic.pause()
         gameOverPage.style.display = 'block'
         landingScreen.style.display = 'none'
         canvas.style.display = 'none'
       }
+}
+
+function gameOver(){
+    collision = false
 }
 
 // FLOWERS
@@ -261,23 +274,28 @@ window.addEventListener('keydown', moveSurfer);
         }
     }
 
-   function reStart(){
-       gameOverPage.style.display = 'none'
-       gameScreen.style.display = ''
-       landingScreen.style.display = 'none'
-       userX = canvas.width/6
-       userY = canvas.height/2
-       score = 0
-       restartButton() 
-   } 
-
+  
 
 //Start the game when we click on the start button
 const startButton = document.getElementById('start')
 startButton.addEventListener("click", startGame)
 
+function reStart(){
+    sharkArray = []
+    flowerArray = []
+    gameOverPage.style.display = 'none'
+    gameScreen.style.display = ''
+    landingScreen.style.display = 'none'
+    userX = canvas.width/6
+    userY = canvas.height/2
+    console.log("I try to restart")
+    score.points = 0
+    collision = false
+    startGame() 
+}  
+
 const restartButton = document.getElementById('restart')
-restartButton.addEventListener("click", restartGame)
+restartButton.addEventListener('click', ()=>{reStart() 
+    //collision = false
+})
 };
-
-
