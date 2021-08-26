@@ -1,9 +1,15 @@
 //http://bdadam.com/blog/panning-and-scrolling-background-images-using-the-canvas-element.html
 window.onload = () => {
 
+//VARIABLES
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d');
-let gameOverPage = document.getElementById('#game-over-page')
+let landingScreen = document.getElementById('landingPage')
+let gameScreen = document.getElementById('game-page')
+let btnStart = document.getElementById('start')
+let btnSound = document.getElementById('sound')
+let gameOverPage = document.getElementById('game-over-page')
+let btnReStart = document.getElementById('restart')
 let frameId = null;
 let obstacleId = null;
 let obstacleIdMommy = null;
@@ -16,24 +22,23 @@ const background = new Background(ctx);
 const surfer = new Surfer(ctx, canvas.width/6, canvas.height/2); // You modify this line to make it appear where you want
 let collision = false;
 let speedMultiplier = 1;
-let increaseSpeed = 1.33
-
+let increaseSpeed = 1.33;
 
 //sounds
 let playMusic = new Audio ()
-playMusic.src = '/Music/MusicGame.mp4'
+playMusic.src = './Music/MusicGame.mp4'
 playMusic.volume = 0.1
 
 let playMusicLandingPage = new Audio()
-playMusicLandingPage.scr = '/Music/shark-tank-theme.mp3'
+playMusicLandingPage.scr = './Music/shark-tank-theme.mp3'
 playMusicLandingPage.volume = 0.1
 
 let playMusicCollectFlower = new Audio()
-playMusicCollectFlower.scr = '/Music/Blip 003.wav'
+playMusicCollectFlower.scr = './Music/Blip 003.wav'
 playMusicCollectFlower.volume = 0.1
 
 let playMusicGameOver = new Audio()
-playMusicGameOver.scr = '/Music/Game Over 001.wav'
+playMusicGameOver.scr = './Music/Game Over 001.wav'
 playMusicGameOver.volume = 0.1
 
 //set the scoring for the flowers
@@ -45,6 +50,8 @@ const score = {
         ctx.fillText('Your score is:' + this.points, 300, 200);
     }
 };
+
+//OBSTACLES
 
 //Shark Obstacle
 const sharkArray = [];
@@ -58,7 +65,7 @@ if(!obstacleId) {
     speedMultiplier * Math.ceil(Math.random() * 1) // will give the speed
     )
     sharkArray.push(sharkObstacle);
-},3000)
+},6000)
 }
 
 if(!obstacleIdMommy) {
@@ -154,13 +161,16 @@ if(!obstacleIdFlower) {
 
 //This is where the game logic happens
 function startGame() {
-    //Create a loop to animate the game
+    //hide the landingPage/Game-overPage
+    landingScreen.style.display = 'none'
+    canvas.style.display = ''
+    gameOverPage.style.display = 'none'
+    //music start / game
     playMusicLandingPage.pause();
     playMusic.play();
     //Clear the canvas
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
-    //Paint the objects, still missing the flowers
+    //Paint the objects/flower
     background.draw();
     score.draw();
     surfer.draw();
@@ -169,13 +179,11 @@ function startGame() {
         shark.draw();
         checkCollision(surfer, shark);
     });
-
     flowerArray.forEach((flower, index)=>{ //loop through the array in order to print the objects in the array
         flower.move();
         flower.draw();
         checkFlower(surfer, flower, index);
     });
-
     if (collision === false) {
         frameId = requestAnimationFrame(startGame);
     }
@@ -195,10 +203,13 @@ function checkCollision (surfer, shark) {
     if (colliding) {
         collision = true;
         console.log('Uh oh! The surfer collided with a shark...')
-        clearInterval(frameId);
-        clearInterval(obstacleId);
-        clearInterval(obstacleIdMommy);
-        clearInterval(obstacleIdFlower);
+        //clearInterval(frameId);
+        //clearInterval(obstacleId);
+        //clearInterval(obstacleIdMommy);
+        //clearInterval(obstacleIdFlower);
+        landingScreen.style.display = 'none'
+        canvas.style.display = 'none'
+        gameOverPage.style.display = ''
         window.location.reload();
         playMusic.pause()
         playMusicGameOver.play()
@@ -221,17 +232,21 @@ function checkFlower (surfer, flower, i) {
         playMusicCollectFlower.play()
 
         
-        //Add difficulty, increase speed
-        if (score.points >= 3 && score.points < 20) {
-            // Let's go through the array of sharks we have
-            // and increase their speed by 1.1
+//Add difficulty, increase speed
+      if (score.points >= 3 && score.points <= 5) {
+    //         // Let's go through the array of sharks we have
             speedMultiplier *= increaseSpeed;
-           // sharkArray.forEach((shark) => {
-             //   shark.speed *= increaseSpeed;
-        //    })
-        }
+        } else if (score.points > 5 && score.points <= 9) {
+            speedMultiplier *= increaseSpeed * 1;
+        } else if (score.points >= 10 && score.points < 15) {
+            speedMultiplier *= increaseSpeed + 2;
+        } else if (score.points >= 15 && score.points < 20) {
+            speedMultiplier *= increaseSpeed + 3;
+        } else if (score.points >=20) {
+            speedMultiplier *= increaseSpeed + 4;
+      }
     }
-};
+    };
 
 window.addEventListener('keydown', moveSurfer);
     function moveSurfer(event){
@@ -264,5 +279,3 @@ window.addEventListener('keydown', moveSurfer);
 const startButton = document.getElementById('start')
 startButton.addEventListener("click", startGame)
 };
-
-//game-over:
