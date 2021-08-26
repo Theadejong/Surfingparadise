@@ -2,7 +2,7 @@ class Background {
     constructor( canvasContext ){
         this.ctx = canvasContext;
         this.bgImg = document.createElement('img');
-        this.bgImg.src = './Images/Background.png';
+        this.bgImg.src = 'Images/Background.png';
         this.x = 0;
         this.y = 0;
         this.width = 2000;

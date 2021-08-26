@@ -4,7 +4,7 @@ class Surfer {
     constructor(canvasContext, startPositionX, startPositionY){
         this.ctx = canvasContext;
         this.surferImg = document.createElement('img');
-        this.surferImg.src = './Images/Surfer.png';
+        this.surferImg.src = 'Images/Surfer.png';
         this.x = startPositionX;
         this.y = startPositionY;
         this.width = 100;

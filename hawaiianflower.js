@@ -3,7 +3,7 @@ class Flower {
     constructor( canvasContext, positionX, positionY, speed ){
         this.ctx = canvasContext;
         this.flowerImg = document.createElement('img');
-        this.flowerImg.src = './Images/HawaiianFlower.png';
+        this.flowerImg.src = 'Images/HawaiianFlower.png';
         this.x = positionX;
         this.y = positionY;
         this.width = 30;

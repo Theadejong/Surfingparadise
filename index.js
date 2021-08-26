@@ -1,13 +1,9 @@
-//create score board
 //http://bdadam.com/blog/panning-and-scrolling-background-images-using-the-canvas-element.html
-//rectangle around objects too large, needs to make this smaller
-//lot's of sharks/flowers and on top of eachother.... need to fix this
-//counting doesn't add +1, but counts incredible amount of flowers... need to figure that one out
-
 window.onload = () => {
 
 let canvas = document.getElementById('myCanvas');
 let ctx = canvas.getContext('2d');
+let gameOverPage = document.getElementById('#game-over-page')
 let frameId = null;
 let obstacleId = null;
 let obstacleIdMommy = null;
@@ -20,7 +16,7 @@ const background = new Background(ctx);
 const surfer = new Surfer(ctx, canvas.width/6, canvas.height/2); // You modify this line to make it appear where you want
 let collision = false;
 let speedMultiplier = 1;
-let increaseSpeed = 10
+let increaseSpeed = 1.33
 
 
 //sounds
@@ -62,7 +58,7 @@ if(!obstacleId) {
     speedMultiplier * Math.ceil(Math.random() * 1) // will give the speed
     )
     sharkArray.push(sharkObstacle);
-},2500)
+},3000)
 }
 
 if(!obstacleIdMommy) {
@@ -72,7 +68,9 @@ if(!obstacleIdMommy) {
             canvas.width,
             Math.random() * (800 - 240) + 240,
             speedMultiplier * Math.ceil(Math.random() * 4), // will give the speed
-            "./Images/MommyShark.png"
+            "Images/MommyShark.png",
+            this.width = 1000,
+            this.height = 1000
         )
         sharkArray.push(sharkObstacle);
     },
@@ -86,7 +84,7 @@ if(!obstacleIdDaddy) {
             canvas.width,
             Math.random() * (800 - 240) + 240,
             speedMultiplier * Math.ceil(Math.random() * 4), // will give the speed
-            "./Images/DaddyShark.png"
+            "Images/DaddyShark.png"
         )
         sharkArray.push(sharkObstacle);
     },
@@ -100,7 +98,7 @@ if(!obstacleIdGrandMommy) {
             canvas.width,
             Math.random() * (800 - 240) + 240,
             speedMultiplier * Math.ceil(Math.random() * 4), // will give the speed
-            "./Images/GrandmomShark.png"
+            "Images/GrandmomShark.png"
         )
         sharkArray.push(sharkObstacle);
     },
@@ -114,7 +112,7 @@ if(!obstacleIdGrandDaddy) {
             canvas.width,
             Math.random() * (800 - 240) + 240,
             speedMultiplier * Math.ceil(Math.random() * 5), // will give the speed
-            "./Images/GranddadShark.png"
+            "Images/GranddadShark.png"
         )
         sharkArray.push(sharkObstacle);
     },
@@ -221,15 +219,17 @@ function checkFlower (surfer, flower, i) {
         flowerArray.splice(i, 1) // to delete the flowers after they have collide
         playMusic.pause()
         playMusicCollectFlower.play()
-        /*Add difficulty, increase speed
-        if (score.points >= 10 && score.points < 20) {
+
+        
+        //Add difficulty, increase speed
+        if (score.points >= 3 && score.points < 20) {
             // Let's go through the array of sharks we have
             // and increase their speed by 1.1
             speedMultiplier *= increaseSpeed;
-            sharkArray.forEach((shark) => {
-                shark.speed *= increaseSpeed;
-            })
-        }*/
+           // sharkArray.forEach((shark) => {
+             //   shark.speed *= increaseSpeed;
+        //    })
+        }
     }
 };
 
@@ -264,3 +264,5 @@ window.addEventListener('keydown', moveSurfer);
 const startButton = document.getElementById('start')
 startButton.addEventListener("click", startGame)
 };
+
+//game-over:
