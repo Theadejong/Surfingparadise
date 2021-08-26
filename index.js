@@ -25,21 +25,13 @@ let speedMultiplier = 1;
 let increaseSpeed = 1.33;
 
 //sounds
-let playMusic = new Audio ()
-playMusic.src = './Music/MusicGame.mp4'
-playMusic.volume = 0.1
+let playMusicLandingPage = new Audio(src='/Music/shark-tank-theme.mp3')
 
-let playMusicLandingPage = new Audio()
-playMusicLandingPage.scr = './Music/shark-tank-theme.mp3'
-playMusicLandingPage.volume = 0.1
+let playMusic = new Audio (scr='./Music/MusicGame.mp4')
 
-let playMusicCollectFlower = new Audio()
-playMusicCollectFlower.scr = './Music/Blip 003.wav'
-playMusicCollectFlower.volume = 0.1
+let playMusicCollectFlower = new Audio(src='./Music/Blip.wav')
 
-let playMusicGameOver = new Audio()
-playMusicGameOver.scr = './Music/Game Over 001.wav'
-playMusicGameOver.volume = 0.1
+let playMusicGameOver = new Audio(src='./Music/Gameover.wav')
 
 //set the scoring for the flowers
 const score = {
@@ -203,16 +195,10 @@ function checkCollision (surfer, shark) {
     if (colliding) {
         collision = true;
         console.log('Uh oh! The surfer collided with a shark...')
-        //clearInterval(frameId);
-        //clearInterval(obstacleId);
-        //clearInterval(obstacleIdMommy);
-        //clearInterval(obstacleIdFlower);
+        playMusicGameOver.play()
+        gameOverPage.style.display = 'block'
         landingScreen.style.display = 'none'
         canvas.style.display = 'none'
-        gameOverPage.style.display = ''
-        window.location.reload();
-        playMusic.pause()
-        playMusicGameOver.play()
       }
 }
 
@@ -275,7 +261,23 @@ window.addEventListener('keydown', moveSurfer);
         }
     }
 
+   function reStart(){
+       gameOverPage.style.display = 'none'
+       gameScreen.style.display = ''
+       landingScreen.style.display = 'none'
+       userX = canvas.width/6
+       userY = canvas.height/2
+       score = 0
+       restartButton() 
+   } 
+
+
 //Start the game when we click on the start button
 const startButton = document.getElementById('start')
 startButton.addEventListener("click", startGame)
+
+const restartButton = document.getElementById('restart')
+restartButton.addEventListener("click", restartGame)
 };
+
+
