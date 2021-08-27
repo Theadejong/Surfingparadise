@@ -1,4 +1,3 @@
-//http://bdadam.com/blog/panning-and-scrolling-background-images-using-the-canvas-element.html
 window.onload = () => {
 
 //VARIABLES
@@ -17,12 +16,11 @@ let obstacleIdDaddy = null;
 let obstacleIdGrandMommy = null;
 let obstacleIdGrandDaddy = null;
 let obstacleIdFlower = null;
-let timeToStartObstacles = 0;
 let collision = false
 const background = new Background(ctx);
 const surfer = new Surfer(ctx, canvas.width/6, canvas.height/2); // You modify this line to make it appear where you want
 let speedMultiplier = 1;
-let increaseSpeed = 1.33;
+let increaseSpeed = 1;
 
 
 //sounds
@@ -118,8 +116,6 @@ if(!obstacleIdGrandDaddy) {
     },
     44000)
 }
-
-//timeToStartObstacles = 1;
 
 //Flower Obstacle
     let flowerArray = [];
@@ -291,6 +287,7 @@ function reStart(){
     console.log("I try to restart")
     score.points = 0
     collision = false
+    speed = 0
     startGame() 
 }  
 

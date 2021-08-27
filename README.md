@@ -1,13 +1,17 @@
 ## SURFING-PARADISE
 
 ## Description
-You are a surfer who is practising for the most important surf competition of it’s life. I order to practice, you went to far away from the shore and got surprised by a group of sharks. Now you  need to return to the shore as soon as possible before eaten alive by the sharks. Besides your skills, the only other way to survive is to collect as many Hawaiian flowers as possible along the ride. You believe the Hawaiian flowers have super powers (superstition). 
+Meet John.
 
-Use your keypad ↕ to collect the Hawaiian flowers or avoid the sharks! 
+John got lost while surfing with his mates and needs to return home safely. The only way for John to get back home is to ride out the wave 
+and avoid any sharks who would love to take a tasty bite out of John. Avoid the sharks and along the way collect as many Hawaiian Super Power Flowers 
+as possible.                
 
-The GameScreen moves to the right and the surfer needs to avoid being eaten alive by the Sharks and collect Hawaiian flowers. The Hawaiian flowers & Sharks come from the right side of the screen, moving to the left.
-
-If the surfer gets in contact with the shark, his/her life will be decreased by 1. The surfer has 3 lives in total. 
+    ~~Instructions
+If John gets bitten by a shark: John has been eaten alive by the Sharks
+Collect Hawaiian flowers to increase his powers
+Use your keypad ↕ & ↔ to help John surfing and collect as many Hawaiian flowers as possible along the ride. 
+John believes the Hawaiian flowers have super powers (superstition).
 
 ## MVP
 * Player can move freely with the 4 arrow keys 
@@ -17,18 +21,21 @@ If the surfer gets in contact with the shark, his/her life will be decreased by 
 * If the surfer collide with the shark, the surfer is eaten alive & you are game over
 
 ## Backlog
-    * Accomplished
+    
+    ~~Finished
 * Score + 1 for each flower
 * Music in background & when colliding
 * Additional obstacles
+* Obstacles with different speed
 * Speed increment
-    * Wishlist
+    ~~Wishlist
 * Highscore
 * Scrolling background
 * Winning feature 
 * Different sizes of the sharks
 * 3 lifes
 * Obstacles not on top of each other
+* Mobile responsive CSS
 
 ## Data structure
 screen.js
