@@ -12,21 +12,20 @@
 <body>
     <div id='landingPage'>
             <h1 class='mainTitle'>Surfers Paradise</h1>
-            <p  class='intro'>Meet John.
-
+            <p  class='intro'><span>Meet John</span>
+                <br><br>
                 John got lost while surfing with his mates and needs to return home safely. The only way for John to get back home is to ride out the wave 
                 and avoid any sharks who would love to take a tasty bite out of John. Avoid the sharks and along the way collect as many Hawaiian Super Power Flowers 
                 as possible. 
                  
             </p>
             <p  class="instructions">
-                If John gets bitten by a shark: John has been eaten alive by the Sharks
-                <br>
-                Collect Hawaiian flowers to increase his powers
-                <br>
-                Use your keypad ↕ & ↔ to help John surfing and collect as many Hawaiian flowers as possible along the ride. 
-                <br>
-                John believes the Hawaiian flowers have super powers (superstition).
+                <span>Instructions</span>
+                <ul>
+                <li>If John gets bitten by a shark: game-over, <br>the Shark had a nice meal!</li>
+                <li>Use your keypad ↕ & ↔ to help John surfing and collect as many Hawaiian flowers as possible along the ride.</li> 
+                <li>Collect Hawaiian flowers to increase his powers. John believes the flowers have super powers (superstition).</li>
+            </ul>
             </p>
         <div>
                 <button class="buttonStyle" id="start">HELP JOHN</button>
@@ -37,7 +36,6 @@
 <!--Game Page-->
 
 <section id="game-page">
-    
     <div id="game-container">
         <canvas id="myCanvas" width="800" height="800"></canvas>
     </div>
@@ -45,14 +43,12 @@
 
 
 <!--Game Over Page-->
-<section id="game-over-page">
+<section class="game-over-page" id="game-over-page">
     <div id="game-over">
-        <h1>You got eaten by the Sharks</h1>
-        <h2 id="final-score"></h2>
+        <h1 id="gameOver">You got eaten by the Sharks</h1>
     </div>
     <div id="game-over-restart">
-        <img src='' id='' alt="">
-        <button id="restart" class="button">Try again?</button>
+        <button id="restart" class="buttonStyle">Try again?</button>
     </div>
 </section>
 

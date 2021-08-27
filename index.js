@@ -153,7 +153,8 @@ function startGame() {
     //hide the landingPage/Game-overPage
     landingScreen.style.display = 'none'
     canvas.style.display = ''
-    gameOverPage.style.display = 'none'
+    gameScreen.style.display = 'initial'
+    //gameOverPage.style.display = 'none'
     //music start / game
     playMusicLandingPage.pause();
     playMusic.play();
@@ -289,7 +290,7 @@ function reStart(){
     collision = false
     speed = 0
     startGame() 
-}  
+} 
 
 const restartButton = document.getElementById('restart')
 restartButton.addEventListener('click', ()=>{reStart() 

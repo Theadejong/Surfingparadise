@@ -35,7 +35,6 @@ John believes the Hawaiian flowers have super powers (superstition).
 * Different sizes of the sharks
 * 3 lifes
 * Obstacles not on top of each other
-* Mobile responsive CSS
 
 ## Data structure
 screen.js
