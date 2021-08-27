@@ -110,7 +110,7 @@ if(!obstacleIdGrandDaddy) {
             canvas.width,
             Math.random() * (800 - 240) + 240,
             speedMultiplier * Math.ceil(Math.random() * 5), // will give the speed
-            "Images/GranddadShark.png"
+            "./Images/GranddadShark.png"
         )
         sharkArray.push(sharkObstacle);
     },
