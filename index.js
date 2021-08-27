@@ -236,13 +236,13 @@ function checkFlower (surfer, flower, i) {
     //         // Let's go through the array of sharks we have
             speedMultiplier *= increaseSpeed;
         } else if (score.points > 5 && score.points <= 9) {
-            speedMultiplier *= increaseSpeed * 1;
-        } else if (score.points >= 10 && score.points < 15) {
             speedMultiplier *= increaseSpeed + 2;
-        } else if (score.points >= 15 && score.points < 20) {
+        } else if (score.points >= 10 && score.points < 15) {
             speedMultiplier *= increaseSpeed + 3;
-        } else if (score.points >=20) {
+        } else if (score.points >= 15 && score.points < 19) {
             speedMultiplier *= increaseSpeed + 4;
+        } else if (score.points >=20) {
+            speedMultiplier *= increaseSpeed + 5;
       }
     }
     };
